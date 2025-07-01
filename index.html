@@ -114,7 +114,7 @@
             font-size: 1.2rem;
             color: #262626;
             text-align: center;
-            margin-top: 120px; /* Adjusted for mobile overlap */
+            margin-top: 120px;
             margin-bottom: 5px;
         }
 
@@ -249,10 +249,11 @@
         .metrics-card {
             background: white;
             border-radius: 16px;
-            padding: 24px;
+            padding: 16px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 2px solid transparent;
+            text-align: center;
         }
 
         .metrics-card:hover {
@@ -262,7 +263,7 @@
         }
 
         .metric-number {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 800;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
@@ -402,7 +403,7 @@
 
             .username {
                 font-size: 1rem;
-                margin-top: 90px; /* Adjusted for smaller screen */
+                margin-top: 90px;
             }
 
             .followers {
@@ -429,11 +430,12 @@
 
             .metrics-card {
                 margin-bottom: 1rem;
-                padding: 16px;
+                padding: 12px;
+                width: 100%;
             }
 
             .metric-number {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
 
             .process-step {
@@ -456,6 +458,18 @@
 
             .cta-button {
                 padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+
+            .contact-buttons .flex {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .contact-buttons a {
+                width: 100%;
+                text-align: center;
+                padding: 10px;
                 font-size: 0.9rem;
             }
         }
@@ -517,8 +531,21 @@
                 font-size: 1.5rem;
             }
 
+            .metrics-card {
+                padding: 10px;
+            }
+
+            .metric-number {
+                font-size: 1.2rem;
+            }
+
             .cta-button {
                 padding: 10px 20px;
+                font-size: 0.8rem;
+            }
+
+            .contact-buttons a {
+                padding: 8px;
                 font-size: 0.8rem;
             }
         }
@@ -695,23 +722,23 @@
     <section class="py-20">
         <div class="container mx-auto px-6">
             <h2 class="section-title">Performance Insights</h2>
-            <div class="grid grid-cols-4 gap-8">
-                <div class="metrics-card text-center">
+            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="metrics-card">
                     <div class="metric-number" id="views-counter">0</div>
                     <div class="text-lg font-semibold text-gray-700 mt-2">Views</div>
                     <div class="text-sm text-gray-500 mt-1">Estimated reach</div>
                 </div>
-                <div class="metrics-card text-center">
+                <div class="metrics-card">
                     <div class="metric-number" id="leads-counter">0</div>
                     <div class="text-lg font-semibold text-gray-700 mt-2">Leads</div>
                     <div class="text-sm text-gray-500 mt-1">Potential impact</div>
                 </div>
-                <div class="metrics-card text-center">
+                <div class="metrics-card">
                     <div class="metric-number" id="interactions-counter">0</div>
                     <div class="text-lg font-semibold text-gray-700 mt-2">Interactions</div>
                     <div class="text-sm text-gray-500 mt-1">Engagement level</div>
                 </div>
-                <div class="metrics-card text-center">
+                <div class="metrics-card">
                     <div class="metric-number">97%</div>
                     <div class="text-lg font-semibold text-gray-700 mt-2">Success Rate</div>
                     <div class="text-sm text-gray-500 mt-1">Project completion</div>
@@ -792,7 +819,7 @@
                 Let's create content that doesn't just get views—it gets results. 
                 Get in touch and let's discuss how we can elevate your brand.
             </p>
-            <div class="flex justify-center gap-8">
+            <div class="contact-buttons flex justify-center gap-8">
                 <a href="mailto:multitask_@outlook.com" class="bg-white text-gray-800 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors">
                     <i class="fas fa-envelope mr-2"></i>
                     multitask_@outlook.com
