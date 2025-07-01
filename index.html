@@ -28,10 +28,7 @@
             background: #1a1a1a;
             border-radius: 40px;
             padding: 10px;
-            box-shadow: 
-                0 0 0 2px rgba(255,255,255,0.1),
-                0 10px 40px rgba(0,0,0,0.4),
-                0 20px 80px rgba(0,0,0,0.2);
+            box-shadow: 0 0 0 2px rgba(255,255,255,0.1), 0 10px 40px rgba(0,0,0,0.4), 0 20px 80px rgba(0,0,0,0.2);
             transform-style: preserve-3d;
             animation: newFloat 6s ease-in-out infinite;
         }
@@ -61,7 +58,9 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            background: transparent;
+            background: #fafafa;
+            justify-content: flex-start;
+            align-items: center;
         }
 
         .phone-notch {
@@ -115,7 +114,7 @@
             font-size: 1.2rem;
             color: #262626;
             text-align: center;
-            margin-top: 100px; /* Adjusted to avoid overlap with profile pic */
+            margin-top: 120px; /* Adjusted for mobile overlap */
             margin-bottom: 5px;
         }
 
@@ -131,7 +130,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: #262626;
             text-align: center;
             margin: 0;
@@ -141,7 +140,7 @@
         .growth-number {
             color: #00cc00;
             font-weight: bold;
-            font-size: 3rem;
+            font-size: 2.5rem;
             display: inline-block;
         }
 
@@ -160,9 +159,7 @@
             border: 8px solid #2d2d2d;
             overflow: hidden;
             position: relative;
-            box-shadow: 
-                inset 0 0 0 1px rgba(255,255,255,0.1),
-                0 -5px 20px rgba(0,0,0,0.3);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1), 0 -5px 20px rgba(0,0,0,0.3);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -365,9 +362,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
             pointer-events: none;
         }
 
@@ -383,14 +378,62 @@
                 margin-top: 40px;
             }
 
+            .phone-profile-pic {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .phone-notch {
+                width: 100px;
+                height: 20px;
+                border-radius: 10px;
+            }
+
+            .phone-camera {
+                width: 8px;
+                height: 8px;
+            }
+
+            .phone-speaker {
+                width: 40px;
+                height: 4px;
+            }
+
+            .username {
+                font-size: 1rem;
+                margin-top: 90px; /* Adjusted for smaller screen */
+            }
+
+            .followers {
+                font-size: 0.8rem;
+            }
+
+            .growth-text {
+                font-size: 1.2rem;
+            }
+
+            .growth-number {
+                font-size: 2rem;
+            }
+
             .monitor-mockup {
-                width: 300px;
-                height: 210px;
+                width: 250px;
+                height: 175px;
                 margin-bottom: 20px;
+            }
+
+            .monitor-screen {
+                height: 150px;
             }
 
             .metrics-card {
                 margin-bottom: 1rem;
+                padding: 16px;
+            }
+
+            .metric-number {
+                font-size: 1.8rem;
             }
 
             .process-step {
@@ -406,27 +449,77 @@
                 flex-direction: column;
                 align-items: center;
             }
-        }
 
-        @media (max-width: 480px) {
-            .phone-mockup {
-                width: 180px;
-                height: 360px;
-                margin-top: 40px;
-            }
-
-            .monitor-mockup {
-                width: 250px;
-                height: 175px;
+            .hero-section {
+                min-height: 80vh;
             }
 
             .cta-button {
                 padding: 12px 24px;
                 font-size: 0.9rem;
             }
+        }
+
+        @media (max-width: 480px) {
+            .phone-mockup {
+                width: 160px;
+                height: 320px;
+            }
+
+            .phone-profile-pic {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .phone-notch {
+                width: 80px;
+                height: 15px;
+            }
+
+            .phone-camera {
+                width: 6px;
+                height: 6px;
+            }
+
+            .phone-speaker {
+                width: 30px;
+                height: 3px;
+            }
+
+            .username {
+                font-size: 0.9rem;
+                margin-top: 70px;
+            }
+
+            .followers {
+                font-size: 0.7rem;
+            }
+
+            .growth-text {
+                font-size: 1rem;
+            }
+
+            .growth-number {
+                font-size: 1.5rem;
+            }
+
+            .monitor-mockup {
+                width: 200px;
+                height: 140px;
+            }
+
+            .monitor-screen {
+                height: 120px;
+            }
 
             .section-title {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
+            }
+
+            .cta-button {
+                padding: 10px 20px;
+                font-size: 0.8rem;
             }
         }
 
@@ -520,13 +613,13 @@
     <section class="hero-section">
         <div class="background-decoration"></div>
         <div class="container mx-auto px-6 flex items-center justify-between flex-col md:flex-row">
-            <div class="w-full md:w-1/2 mb-8 md:mb-0">
+            <div class="w-full md:w-1/2 mb-8 md:mb-0 text-center md:text-left">
                 <h1 class="text-4xl md:text-6xl font-bold mb-6 text-gray-800">
                     The transcript <br>
                     <span class="gradient-bg bg-clip-text text-transparent" style="color: white;">Transformed</span>
                 </h1>
                 <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
-                    I transformed the transcript into a engaging content, creating a post and a video to showcase my skills. 
+                    I transformed the transcript into engaging content, creating a post and a video to showcase my skills. 
                     Explore how I turned raw text into impactful social media assets.
                 </p>
                 <a href="#demos" class="cta-button">
@@ -537,6 +630,9 @@
             <div class="w-full md:w-1/2 flex justify-center">
                 <div class="phone-mockup">
                     <div class="phone-profile-pic">C</div>
+                    <div class="phone-notch"></div>
+                    <div class="phone-camera"></div>
+                    <div class="phone-speaker"></div>
                     <div class="phone-screen">
                         <div class="instagram-replica">
                             <div class="username">@coach</div>
