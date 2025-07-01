@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Showcase - Transcript Transformations</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            overflow-x: hidden;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .phone-mockup {
+            position: relative;
+            width: 280px;
+            height: 580px;
+            background: #1a1a1a;
+            border-radius: 40px;
+            padding: 10px;
+            box-shadow: 
+                0 0 0 2px rgba(255,255,255,0.1),
+                0 10px 40px rgba(0,0,0,0.4),
+                0 20px 80px rgba(0,0,0,0.2);
+            transform-style: preserve-3d;
+            animation: newFloat 6s ease-in-out infinite;
+        }
+
+        .phone-profile-pic {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            z-index: 12;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background: transparent;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 30px;
+            background: #1a1a1a;
+            border-radius: 15px;
+            z-index: 10;
+        }
+
+        .phone-camera {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background: #333;
+            border-radius: 50%;
+            z-index: 11;
+        }
+
+        .phone-speaker {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+            z-index: 11;
+        }
+
+        .instagram-replica {
+            height: 100%;
+            background: #fafafa;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .username {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #262626;
+            text-align: center;
+            margin-top: 100px; /* Adjusted to avoid overlap with profile pic */
+            margin-bottom: 5px;
+        }
+
+        .followers {
+            font-size: 0.9rem;
+            color: #8e8e8e;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .growth-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            color: #262626;
+            text-align: center;
+            margin: 0;
+            z-index: 10;
+        }
+
+        .growth-number {
+            color: #00cc00;
+            font-weight: bold;
+            font-size: 3rem;
+            display: inline-block;
+        }
+
+        .monitor-mockup {
+            position: relative;
+            width: 400px;
+            height: 280px;
+            animation: monitorFloat 4s ease-in-out infinite;
+        }
+
+        .monitor-screen {
+            width: 100%;
+            height: 220px;
+            background: #1a1a1a;
+            border-radius: 8px;
+            border: 8px solid #2d2d2d;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 
+                inset 0 0 0 1px rgba(255,255,255,0.1),
+                0 -5px 20px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes newFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes monitorFloat {
+            0%, 100% { transform: translateY(0px) rotateX(5deg) rotateY(-5deg); }
+            50% { transform: translateY(-15px) rotateX(5deg) rotateY(-5deg); }
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+            opacity: 0;
+        }
+
+        .carousel-container:hover .carousel-nav {
+            opacity: 1;
+        }
+
+        .carousel-nav:hover {
+            background: rgba(0,0,0,0.8);
+        }
+
+        .carousel-prev {
+            left: 10px;
+        }
+
+        .carousel-next {
+            right: 10px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .youtube-embed {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .metrics-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .metrics-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .metric-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .process-step {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #667eea;
+        }
+
+        .process-step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 16px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        .see-better-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+            margin-top: 10px;
+        }
+
+        .see-better-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        .background-decoration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Responsividade para dispositivos móveis */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .phone-mockup {
+                width: 200px;
+                height: 400px;
+                margin-top: 40px;
+            }
+
+            .monitor-mockup {
+                width: 300px;
+                height: 210px;
+                margin-bottom: 20px;
+            }
+
+            .metrics-card {
+                margin-bottom: 1rem;
+            }
+
+            .process-step {
+                padding: 20px;
+            }
+
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            #demos .flex {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .phone-mockup {
+                width: 180px;
+                height: 360px;
+                margin-top: 40px;
+            }
+
+            .monitor-mockup {
+                width: 250px;
+                height: 175px;
+            }
+
+            .cta-button {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Fullscreen Modal Styles */
+        #fullscreenModal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        #fullscreenModal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #fullscreenImage {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        #closeModal, #prevImage, #nextImage {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        #closeModal:hover, #prevImage:hover, #nextImage:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        #closeModal {
+            top: 20px;
+            right: 20px;
+        }
+
+        #prevImage {
+            left: 20px;
+        }
+
+        #nextImage {
+            right: 20px;
+        }
+
+        .fullscreen-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            z-index: 10;
+            font-size: 1.5rem;
+        }
+
+        .carousel-container:hover .fullscreen-button,
+        .carousel-container:active .fullscreen-button,
+        .carousel-container:focus .fullscreen-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fullscreen-button i {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="background-decoration"></div>
+        <div class="container mx-auto px-6 flex items-center justify-between flex-col md:flex-row">
+            <div class="w-full md:w-1/2 mb-8 md:mb-0">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 text-gray-800">
+                    The Best Content <br>
+                    <span class="gradient-bg bg-clip-text text-transparent" style="color: white;">of Your Life</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
+                    I transformed a single transcript into engaging content, creating a post and a video to showcase my skills. 
+                    Explore how I turned raw audio into impactful social media assets.
+                </p>
+                <a href="#demos" class="cta-button">
+                    <i class="fas fa-play mr-2"></i>
+                    View My Work
+                </a>
+            </div>
+            <div class="w-full md:w-1/2 flex justify-center">
+                <div class="phone-mockup">
+                    <div class="phone-profile-pic">C</div>
+                    <div class="phone-notch"></div>
+                    <div class="phone-camera"></div>
+                    <div class="phone-speaker"></div>
+                    <div class="phone-screen">
+                        <div class="instagram-replica">
+                            <div class="username">@coach</div>
+                            <div class="followers">1M Followers</div>
+                            <div class="growth-text" id="growthText">Growth: <span class="growth-number" id="growthNumber">0</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demos" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">My Transcript Transformations</h2>
+            <div class="flex justify-center gap-12 flex-col md:flex-row">
+                <!-- Monitor 1 - Carousel -->
+                <div class="text-center">
+                    <div class="monitor-mockup">
+                        <div class="monitor-screen">
+                            <div class="carousel-container relative">
+                                <div class="carousel-slide active" style="background-image: url('https://page1.genspark.site/v1/base64_upload/3b5a4b633c891643a8d6aa4478d7a584');" data-index="0"></div>
+                                <div class="carousel-slide" style="background-image: url('https://page1.genspark.site/v1/base64_upload/63bd6503e3e9f1056ce7be278e65dfc6');" data-index="1"></div>
+                                <div class="carousel-slide" style="background-image: url('https://page1.genspark.site/v1/base64_upload/f868694aa3b76d9caf65f6eb2908bb82');" data-index="2"></div>
+                                <div class="carousel-slide" style="background-image: url('https://page1.genspark.site/v1/base64_upload/fa2bfe98d717ae7886c06bbe9b37322e');" data-index="3"></div>
+                                <button class="carousel-nav carousel-prev" id="carouselPrev"><i class="fas fa-chevron-left"></i></button>
+                                <button class="carousel-nav carousel-next" id="carouselNext"><i class="fas fa-chevron-right"></i></button>
+                                <button class="carousel-nav fullscreen-button" id="fullscreenButton"><i class="fas fa-expand"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1OuSeeJrEDSjtXS7F71ipwKY46GbKFS9e?usp=sharing" class="see-better-button">
+                        Click here to see them better
+                    </a>
+                    <h3 class="text-2xl font-bold mt-4 mb-4">Transcript as Post</h3>
+                    <p class="text-sm text-gray-600">Hover or tap to view fullscreen</p>
+                </div>
+
+                <!-- Monitor 2 - Video -->
+                <div class="text-center">
+                    <div class="monitor-mockup">
+                        <div class="monitor-screen">
+                            <div class="video-container">
+                                <iframe class="youtube-embed" src="https://www.youtube.com/embed/QHhBhEn_tbA?autoplay=1&mute=1&controls=1&loop=1&playlist=QHhBhEn_tbA" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1OuSeeJrEDSjtXS7F71ipwKY46GbKFS9e?usp=sharing" class="see-better-button">
+                        Click here to see them better
+                    </a>
+                    <h3 class="text-2xl font-bold mt-4 mb-4">Transcript as Video</h3>
+                    <p class="text-sm text-gray-600">Click play to see the video</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metrics Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Performance Insights</h2>
+            <div class="grid grid-cols-4 gap-8">
+                <div class="metrics-card text-center">
+                    <div class="metric-number" id="views-counter">0</div>
+                    <div class="text-lg font-semibold text-gray-700 mt-2">Views</div>
+                    <div class="text-sm text-gray-500 mt-1">Estimated reach</div>
+                </div>
+                <div class="metrics-card text-center">
+                    <div class="metric-number" id="leads-counter">0</div>
+                    <div class="text-lg font-semibold text-gray-700 mt-2">Leads</div>
+                    <div class="text-sm text-gray-500 mt-1">Potential impact</div>
+                </div>
+                <div class="metrics-card text-center">
+                    <div class="metric-number" id="interactions-counter">0</div>
+                    <div class="text-lg font-semibold text-gray-700 mt-2">Interactions</div>
+                    <div class="text-sm text-gray-500 mt-1">Engagement level</div>
+                </div>
+                <div class="metrics-card text-center">
+                    <div class="metric-number">97%</div>
+                    <div class="text-lg font-semibold text-gray-700 mt-2">Success Rate</div>
+                    <div class="text-sm text-gray-500 mt-1">Project completion</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">My Creation Process</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="process-step">
+                    <div class="flex items-start">
+                        <div class="step-icon">
+                            <i class="fas fa-pen-fancy"></i>
+                        </div>
+                        <div class="ml-6">
+                            <h3 class="text-2xl font-bold mb-4">Persuasive Copywriting</h3>
+                            <p class="text-gray-600 text-lg leading-relaxed">
+                                I crafted compelling copy from the transcript, targeting the audience's needs and using storytelling to engage them effectively.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="flex items-start">
+                        <div class="step-icon">
+                            <i class="fas fa-fish-hook"></i>
+                        </div>
+                        <div class="ml-6">
+                            <h3 class="text-2xl font-bold mb-4">Powerful Hook Strategy</h3>
+                            <p class="text-gray-600 text-lg leading-relaxed">
+                                I designed a strong hook from the transcript to grab attention within the first few seconds, ensuring maximum viewer retention.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="flex items-start">
+                        <div class="step-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="ml-6">
+                            <h3 class="text-2xl font-bold mb-4">Validated Content Strategy</h3>
+                            <p class="text-gray-600 text-lg leading-relaxed">
+                                I analyzed the transcript and applied a structured approach to create content that aligns with audience expectations.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="flex items-start">
+                        <div class="step-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="ml-6">
+                            <h3 class="text-2xl font-bold mb-4">Multi-Format Optimization</h3>
+                            <p class="text-gray-600 text-lg leading-relaxed">
+                                I transformed the transcript into both a post and a video, optimizing each for their respective platforms.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-20 gradient-bg">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-white mb-6">Ready to Transform Your Content?</h2>
+            <p class="text-xl text-white opacity-90 mb-8 max-w-2xl mx-auto">
+                Let's create content that doesn't just get views—it gets results. 
+                Get in touch and let's discuss how we can elevate your brand.
+            </p>
+            <div class="flex justify-center gap-8">
+                <a href="mailto:multitask_@outlook.com" class="bg-white text-gray-800 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                    <i class="fas fa-envelope mr-2"></i>
+                    multitask_@outlook.com
+                </a>
+                <a href="tel:+5514996621675" class="bg-white text-gray-800 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                    <i class="fas fa-phone mr-2"></i>
+                    +55 14 99662-1675
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fullscreen Image Modal -->
+    <div id="fullscreenModal" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 hidden">
+        <button id="closeModal" class="absolute top-4 right-4 text-white text-3xl focus:outline-none">×</button>
+        <button id="prevImage" class="absolute left-4 text-white text-5xl focus:outline-none">‹</button>
+        <img id="fullscreenImage" src="" alt="Fullscreen Image" class="max-w-full max-h-full object-contain">
+        <button id="nextImage" class="absolute right-4 text-white text-5xl focus:outline-none">›</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+        const postImages = [
+            'https://page1.genspark.site/v1/base64_upload/3b5a4b633c891643a8d6aa4478d7a584',
+            'https://page1.genspark.site/v1/base64_upload/63bd6503e3e9f1056ce7be278e65dfc6',
+            'https://page1.genspark.site/v1/base64_upload/f868694aa3b76d9caf65f6eb2908bb82',
+            'https://page1.genspark.site/v1/base64_upload/fa2bfe98d717ae7886c06bbe9b37322e'
+        ];
+        let slideInterval;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function startSlideShow() {
+            slideInterval = setInterval(nextSlide, 7000);
+        }
+
+        function stopSlideShow() {
+            clearInterval(slideInterval);
+        }
+
+        document.querySelector('.carousel-container').addEventListener('mouseenter', stopSlideShow);
+        document.querySelector('.carousel-container').addEventListener('mouseleave', startSlideShow);
+        startSlideShow();
+
+        document.getElementById('carouselPrev').addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        });
+
+        document.getElementById('carouselNext').addEventListener('click', nextSlide);
+
+        const fullscreenModal = document.getElementById('fullscreenModal');
+        const fullscreenImage = document.getElementById('fullscreenImage');
+        const closeModal = document.getElementById('closeModal');
+        const prevImage = document.getElementById('prevImage');
+        const nextImage = document.getElementById('nextImage');
+        const fullscreenButton = document.getElementById('fullscreenButton');
+
+        fullscreenButton.addEventListener('click', () => {
+            fullscreenImage.src = postImages[currentSlide];
+            fullscreenModal.classList.remove('hidden');
+            stopSlideShow();
+        });
+
+        slides.forEach(slide => {
+            slide.addEventListener('click', (e) => {
+                if (e.target === slide) {
+                    const index = parseInt(slide.dataset.index);
+                    currentSlide = index;
+                    fullscreenImage.src = postImages[index];
+                    fullscreenModal.classList.remove('hidden');
+                    stopSlideShow();
+                }
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            fullscreenModal.classList.add('hidden');
+            startSlideShow();
+        });
+
+        prevImage.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            fullscreenImage.src = postImages[currentSlide];
+        });
+
+        nextImage.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            fullscreenImage.src = postImages[currentSlide];
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!fullscreenModal.classList.contains('hidden')) {
+                if (e.key === 'ArrowLeft') {
+                    prevImage.click();
+                } else if (e.key === 'ArrowRight') {
+                    nextImage.click();
+                } else if (e.key === 'Escape') {
+                    closeModal.click();
+                }
+            }
+        });
+
+        function animateCounter(id, target, duration = 2000) {
+            const element = document.getElementById(id);
+            let start = 0;
+            const end = target;
+            const range = end - start;
+            const startTime = performance.now();
+
+            function update() {
+                const currentTime = performance.now();
+                const progress = Math.min((currentTime - startTime) / duration, 1);
+                const value = Math.floor(start + range * progress);
+                element.textContent = value;
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    element.textContent = end;
+                }
+            }
+            requestAnimationFrame(update);
+        }
+
+        // Animate growth number on page load
+        window.addEventListener('load', () => {
+            animateCounter('growthNumber', 32);
+        });
+
+        function animateCounterMetrics(id, target, suffix = '') {
+            const element = document.getElementById(id);
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target.toLocaleString() + suffix;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString() + suffix;
+                }
+            }, 30);
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounterMetrics('views-counter', 500, 'K');
+                    animateCounterMetrics('leads-counter', 2, 'K');
+                    animateCounterMetrics('interactions-counter', 100, 'K');
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        observer.observe(document.querySelector('.metrics-card'));
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
